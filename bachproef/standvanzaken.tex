@@ -1,51 +1,176 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-% Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
-% dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
-% bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
+This literature review examines existing research on cryptocurrency price dynamics, the influence of Bitcoin on altcoins like Tezos, and machine learning approaches to price prediction. The reviewed studies are categorized into the following areas:
 
-% Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
+\begin{enumerate}
+    \item \textbf{Introduction to Bitcoin and Tezos}:
+    A brief overview of Bitcoin and Tezos, including technological foundations, and market significance.
+    \item \textbf{Correlation Between Bitcoin and Other Cryptocurrencies}:  
+    Studies exploring how Bitcoin's price movements influence other cryptocurrencies, including Tezos, and the extent to which Bitcoin serves as a market leader.
+    
+    \item \textbf{Machine Learning Techniques for Price Forecasting}:  
+    Research on predictive models applied to cryptocurrency and stockmarkets.
+\end{enumerate}
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+\subsection{Introduction to Bitcoin and Tezos}
+Bitcoin and Tezos are two prominent blockchain networks with distinct design philosophies and operational mechanisms. Bitcoin, introduced by \autocite{bitcoinwhitepaper2008}, pioneered decentralized digital currency using proof-of-work (PoW). Tezos, proposed by \autocite{tezos2014goodman}, introduced a self-amending blockchain with on-chain governance and a proof-of-stake (PoS) consensus mechanism. This section provides an overview of both networks and highlights their key differences.
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+\subsubsection{Bitcoin: A Decentralized Peer-to-Peer Currency}
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+Bitcoin was designed as a trustless, decentralized system that enables direct online transactions without financial intermediaries. It prevents double-spending through a PoW-based blockchain, where miners validate transactions by solving cryptographic puzzles. The longest chain serves as proof of the sequence of transactions and is maintained by miners who control the majority of computing power. Bitcoin operates with minimal governance, relying on a community-driven process for protocol upgrades, often leading to contentious hard forks, such as Bitcoin Cash or Litecoin \textcite{coinmarketcap}.
 
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+\subsubsection{Tezos: A Self-Amending Blockchain}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{grail.jpg}
-  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
-\end{figure}
+Tezos builds upon the principles of Bitcoin while introducing significant innovations in governance and flexibility. Unlike Bitcoin’s static protocol, Tezos allows on-chain governance, enabling stakeholders to propose, vote on, and implement protocol upgrades without requiring hard forks. The network operates on a PoS consensus model, where validators ("bakers") create new blocks based on the number of tokens they hold and stake. Additionally, Tezos supports Turing-complete smart contracts, making it a viable platform for decentralized applications (dApps). Implemented in OCaml, Tezos emphasizes formal verification to enhance security and correctness.
 
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
+\subsubsection{Comparative Analysis}
 
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
 
-\lipsum[7-20]
+While Bitcoin and Tezos both function as blockchain networks, their underlying structures reflect different priorities. Bitcoin’s PoW mechanism ensures security through computational effort, making it highly decentralized but also energy-intensive. According to \autocite{digiconomist}, a single Bitcoin transaction has a carbon footprint of around 657.92 kg of CO2, a fresh water consumption of 18,590 liters, and uses 1179.58 kWh of energy. In contrast, Tezos’s PoS model enables efficiency and scalability by eliminating the need for energy-intensive mining. Instead, validators (bakers) are chosen to create new blocks based on their stake, aligning economic incentives while reducing computational waste.
 
-\begin{table}
-  \centering
-  \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
-\end{table}
+Governance also marks a significant difference between the two: Bitcoin relies on informal, off-chain discussions and developer consensus, often leading to forks when disagreements arise. Tezos, however, integrates governance directly into the blockchain, allowing for seamless protocol upgrades without fragmentation. Furthermore, Bitcoin’s scripting language is intentionally limited, focusing solely on secure transactions, whereas Tezos supports Turing-complete smart contracts, enabling a wider range of applications. The implementation languages also differ, with Bitcoin written in C++ to prioritize robustness, while Tezos utilizes OCaml, which facilitates formal verification and enhanced security.
+
+\subsubsection{Proof of Stake vs Proof of Work}
+
+Blockchain networks rely on consensus mechanisms to validate transactions and maintain security. The two most prominent methods are Proof of Work (PoW) and Proof of Stake (PoS), each with its own advantages and limitations.
+
+\subsubsection{Proof of Work (PoW)} 
+
+PoW is the consensus mechanism originally used by Bitcoin. In this system, miners compete to solve complex cryptographic puzzles to validate transactions and add new blocks to the blockchain. The first miner to solve the puzzle gets to append the block and receive newly minted cryptocurrency as a reward.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Highly secure due to the immense computational effort required to attack the network.
+    \item Proven track record of reliability and decentralization.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Extremely energy-intensive, leading to significant environmental concerns.
+    \item Mining hardware requirements create centralization risks, as only those with powerful, specialized equipment can effectively participate.
+    \item Transaction speeds can be slow due to block size and processing limitations.
+\end{itemize}
+
+\subsubsection{Proof of Stake (PoS)}
+
+PoS, used by Tezos, offers an alternative approach that eliminates the need for intensive computational work. Instead of mining, validators (or "bakers" in Tezos) are selected to create new blocks based on the number of tokens they hold and stake in the network. The more tokens staked, the higher the probability of being chosen to validate a block.
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Energy-efficient, significantly reducing the environmental impact.
+    \item Encourages decentralization by allowing more participants to validate transactions without requiring expensive hardware.
+    \item Faster transaction processing times and improved scalability.
+\end{itemize}
+
+\textbf{Disadvantages:}
+\begin{itemize}
+    \item Security relies on economic incentives rather than computational difficulty, which could introduce vulnerabilities if not properly designed.
+    \item Wealth concentration risk, as those with more tokens have a greater influence on validation.
+\end{itemize}
+
+
+\subsubsection{Conclusion}
+
+Bitcoin and Tezos represent different evolutionary paths in blockchain technology. While Bitcoin remains the dominant digital currency, with a market cap of 1.7 billion USD \textcite{coinmarketcap}, focused on decentralization and security, Tezos, with a market cap of 700 million USD \textcite{coinmarketcap}, introduces a dynamic and self-amending system that enhances governance, scalability, and flexibility. Understanding these differences provides insight into how various blockchain architectures impact market dynamics and technological adoption.
+
+\subsection{Correlation Between Bitcoin and Other Assets}
+\textcite{hossain2021there} provide significant evidence of the strong interdependence between cryptocurrencies, with volatility correlations exceeding 0.9 across markets. They argue that this high degree of correlation highlights the co-movement of cryptocurrencies—a finding consistent with earlier studies such as \autocite{guesmi2019portfolio}. This interdependence is crucial for understanding the dynamics of digital currencies, as the behavior of one cryptocurrency (e.g., Bitcoin) can strongly influence others, such as Tezos. Their findings emphasize the need to analyze cryptocurrencies not in isolation but as part of an interconnected system. Notably, there is a distinct lack of research specifically focusing on the relationship between Bitcoin and Tezos, which this study aims to address.
+
+Various studies have also examined the influence of external factors on Bitcoin. For example, \autocite{kurka2019cryptocurrencies} explored the dynamics and asymmetries in shock transmission mechanisms between Bitcoin and traditional asset classes, including stocks, commodities, foreign exchange, and financials. The study found that, unconditionally, spillovers to and from Bitcoin remain fairly low. This suggests that Bitcoin is relatively insulated from shocks originating in traditional markets.
+
+However, a significant limitation of Kurka's study is the use of Bitcoin as a representative cryptocurrency for the entire market. While Bitcoin is the most dominant cryptocurrency with the largest market cap, it does not account for the diversity within the cryptocurrency market. Different cryptocurrencies may exhibit unique behaviors and varying levels of interaction with traditional assets. Treating Bitcoin as a proxy for the entire market risks oversimplifying conclusions.
+
+\subsection{Machine Learning Techniques for Price Forecasting}
+
+In recent years, machine learning techniques have gained prominence in forecasting financial prices, including Bitcoin. In a study by \textcite{lauraalessandretti2018anticipating}, the authors employed machine learning methods such as XGBoost Regression and Long Short-Term Memory (LSTM) neural networks to predict price movements. XGBoost, a gradient boosting framework, was selected for its ability to handle large datasets with non-linear relationships, offering superior predictive performance on structured data. LSTM, a type of recurrent neural network (RNN), was particularly effective in capturing sequential dependencies within time-series data, making it ideal for predicting financial prices, where past behaviors significantly influence future trends.
+This is further supported by the work of \autocite{alessandretti2018anticipating}, where the authors explored the use of three forecasting models applied to daily prices of 1,681 cryptocurrencies: two based on gradient boosting decision trees and one on long short-term memory (LSTM) recurrent neural networks. The study demonstrated that these models consistently outperformed a baseline simple moving average strategy in terms of profitability, even when accounting for transaction fees of up to 1\%.
+
+Other machine learning techniques commonly used in price forecasting, such as Random Forests, Supporst Vector Machines (SVM), and deep learning models, offer distinct advantages depending on the data characteristics. For instance, Random Forests are ensemble methods that aggregate multiple decision trees, helping reduce overfitting and improve model accuracy, while SVM is valued for its robustness in high-dimensional spaces, making it a strong choice for complex datasets. These techniques were also explored in the study by \textcite{athanasia2023predicting} , which investigated Bitcoin’s market behavior and its response to macroeconomic factors. The research applied machine learning models like logistic regression, SVM, and Random Forests to assess whether Bitcoin follows the efficient market hypothesis (EMH). The study found that Bitcoin’s returns are largely independent of other cryptocurrencies and macroeconomic variables, suggesting that Bitcoin operates as a distinct asset class. These findings support the notion that Bitcoin may not adhere to the same dynamics as traditional financial markets, positioning it as a potential hedge against macroeconomic risks and underscoring its growing role in the modern investment landscape.
+
+Another study by \textcite{Adnan2023} examined various machine learning techniques, including Autoregressive Integrated Moving Average (ARIMA) and LSTM networks. The study found that ARIMA outperformed other models, achieving a 95.98\% accuracy in Bitcoin price prediction, making it the most reliable method among those tested.
+
+\subsubsection{Machine Learning models}
+source: \autocite{Handson}
+\begin{itemize}
+    \item Random Forest
+    Random Forest is a machine learning algorithm that combines multiple decision trees to make predictions. Each tree in the forest is trained on a random subset of the data and makes its own prediction.
+    \item Linear Regression
+
+Linear regression is a simple statistical method used to find the relationship between two or more variables. It predicts an outcome (dependent variable) based on one or more input variables (independent variables) by fitting a straight line to the data.
+
+The equation for simple linear regression is:  
+\begin{equation}
+    y = mx + b
+\end{equation}
+where:  
+\begin{itemize}
+    \item \( y \) is the predicted value,
+    \item \( x \) is the input variable,
+    \item \( m \) is the slope (how much \( y \) changes when \( x \) increases), and
+    \item \( b \) is the intercept (the value of \( y \) when \( x = 0 \)).
+\end{itemize}
+
+For multiple input variables, the equation expands to:  
+\begin{equation}
+    y = b_0 + b_1x_1 + b_2x_2 + \dots + b_nx_n
+\end{equation}
+where each \( x \) represents a different input variable, and each \( b \) is a weight showing its impact on \( y \).
+
+Linear regression is widely used because it is simple, easy to interpret, and works well when there is a clear linear relationship between variables.
+    \item XGBoost Regression
+    XGBoost (Extreme Gradient Boosting) is a powerful machine learning algorithm based on decision trees. It is designed for both classification and regression tasks and is known for its speed, efficiency, and predictive accuracy.
+
+    XGBoost regression works by building multiple decision trees sequentially, where each new tree tries to correct the errors made by the previous trees. It uses a boosting technique, meaning that trees are trained iteratively, improving the model step by step.
+    
+    The key components of XGBoost include:
+    
+    \begin{itemize}
+        \item \textbf{Gradient Boosting:} It optimizes the loss function by minimizing errors in each iteration using gradient descent.
+        \item \textbf{Regularization:} XGBoost applies L1 (Lasso) and L2 (Ridge) regularization to prevent overfitting and improve generalization.
+        \item \textbf{Handling Missing Data:} The algorithm automatically learns the best way to handle missing values.
+        \item \textbf{Parallel Processing:} Unlike traditional boosting methods, XGBoost efficiently processes data in parallel, making it significantly faster.
+    \end{itemize}
+    
+    Given a dataset with input features \( X \) and target values \( y \), XGBoost regression builds an ensemble of trees to predict \( \hat{y} \), minimizing a loss function such as Mean Squared Error (MSE):
+    
+    \begin{equation}
+        L = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{k} w_j^2
+    \end{equation}
+    
+    where:
+    \begin{itemize}
+        \item \( y_i \) is the actual value,
+        \item \( \hat{y}_i \) is the predicted value,
+        \item \( \lambda \) is the regularization parameter,
+        \item \( w_j \) represents the weights of the model.
+    \end{itemize}
+    
+    XGBoost is widely used in machine learning competitions and real-world applications due to its high accuracy, scalability, and ability to handle large datasets effectively.
+\end{itemize}
+
+\subsubsection{Performance Metrics}
+
+A multitude of performance metrics are available for evaluating machine learning models, each with its own strengths and weaknesses. The choice of metric depends on the specific problem and the desired outcome. Here are some commonly used performance metrics in financial forecasting:
+\begin{itemize}
+    \item \textbf{Accuracy:} The percentage of correct predictions made by the model. It is a straightforward metric but may not be suitable for imbalanced datasets \textcite{akyildirim2021prediction}, \textcite{goutteDeepLearning2023}, \textcite{Adnan2023}, \textcite{athanasia2023predicting}, \textcite{dennys2019predicting}.
+    \item \textbf{Mean Absolute Percentage Error (MAPE):} Measures the average absolute percentage error between predicted and actual values. It is useful for understanding the model's performance in relative terms \textcite{mallqui2019predicting}.
+    \item \textbf{Root Mean Squared Error (RMSE):} Measures the square root of the average squared differences between predicted and actual values. RMSE gives more weight to larger errors, making it sensitive to outliers \textcite{mishal2022prediction}.
+    \item \textbf{F1 Score:} A harmonic mean of precision and recall, useful for evaluating models on imbalanced datasets. It balances false positives and false negatives \textcite{hafid2024}.
+
+\section{Conclusion} 
+The reviewed literature highlights several key aspects of cryptocurrency price dynamics and predictive modeling. First, existing studies indicate a strong correlation between Bitcoin and other cryptocurrencies, with volatility spillovers suggesting that Bitcoin often serves as a market leader. However, research specifically focusing on the relationship between Bitcoin and Tezos remains limited, underscoring a gap that this study aims to address.
+
+Second, machine learning techniques have demonstrated considerable potential in forecasting cryptocurrency prices. Models such as XGBoost, LSTMs, and Random Forests have outperformed traditional baseline approaches, leveraging complex patterns in market data. However, challenges remain, including overfitting, market volatility, and the integration of external factors such as regulatory decisions and social media sentiment. The unpredictability of the cryptocurrency market further complicates efforts to develop consistently accurate forecasting models.
+
+Finally, while Bitcoin’s role within financial markets continues to be debated, studies suggest that its behavior differs significantly from traditional assets. Findings on its relationship with macroeconomic factors indicate that Bitcoin may function as a distinct asset class, with implications for risk management and portfolio diversification. Given these insights, this study seeks to contribute to the ongoing discourse by leveraging machine learning to explore the specific interactions between Bitcoin and Tezos, addressing gaps in existing research while acknowledging the inherent challenges in cryptocurrency price prediction.
+
+% Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+
+% Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+
+% \textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+
+% Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+
 

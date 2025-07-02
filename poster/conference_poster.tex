@@ -9,78 +9,75 @@
 % Info over de opleiding
 \course{Bachelorproef}
 \studyprogramme{toegepaste informatica}
-\academicyear{2022-2023}
+\academicyear{2024-2025}
 \institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
 
 % Info over de bachelorproef
-\title{Titel van uw bachelorproef}
-\subtitle{Ondertitel (eventueel)}
-\author{Voornaam Naam}
-\email{voornaam.familienaam@student.hogent.be}
-\supervisor{Voornaam Naam}
-\cosupervisor{Voornaam Naam (Bedrijf)}
+\title{Leveraging Machine Learning to Examine the Link Between Bitcoin and Tezos Market Dynamics.}
+% \subtitle{Ondertitel (eventueel)}
+\author{Hanno van Baarle}
+\email{Hanno.vanbaarle@student.hogent.be}
+\supervisor{Thomas Desmedt}
+\cosupervisor{F. J. Kirk}
 
 % Indien ingevuld, wordt deze informatie toegevoegd aan het einde van de
 % abstract. Zet in commentaar als je dit niet wilt.
-\specialisation{Systeem- en Netwerkbeheer}
-\keywords{Lambda-calculus, Scheme}
-\projectrepo{https://github.com/user/repo}
+\specialisation{Data-Science \& AI}
+% \keywords{Lambda-calculus, Scheme}
+% \projectrepo{https://github.com/user/repo}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
+This thesis investigates whether short-term Bitcoin (BTC) price dynamics can help predict Tezos (XTZ) price movements, using machine learning. While BTC’s market influence is well established, its predictive power on individual altcoins like Tezos remains underexplored.
+
+To study this, three models—Linear Regression, Random Forest, and XGBoost—were trained on engineered lagged features derived from historical BTC and XTZ data. Model performance was assessed using $R^2$ and Root Mean Squared Error (RMSE).
+
+XGBoost excelled on training data ($R^2 = 0.9948$, RMSE = 0.1117) but showed signs of overfitting ($R^2 = 0.8415$ on test data). Random Forest achieved the best test RMSE (0.0810) and generalization ($R^2 = 0.9182$), though both tree-based models largely ignored BTC-related variables. Linear Regression, while slightly less accurate, revealed meaningful cross-asset dependencies—BTC features such as \texttt{btc\_price\_3d\_ago} were statistically significant, indicating a delayed linear influence from Bitcoin to Tezos.
+
+These findings suggest that while complex models capture autocorrelation well, simpler linear models better expose interpretable, inter-market relationships—critical for understanding and managing volatility in the Tezos ecosystem.
 \end{abstract}
 
-\begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
+\begin{multicols}{3} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
 
-\section{Introductie}
+\section{Introduction}
 
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+For Tezos-based decentralized exchanges, such as CrunchySwap, accurately predicting the price of Tezos (\$XTZ) is crucial, as the gas fees required for transaction processing are directly tied to the value of Tezos. Sudden and unpredictable price shifts can lead to operational inefficiencies, higher costs, and user dissatisfaction.
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say `Ni' again to you, if you do not appease us.
+If the price of Tezos drops sharply, gas fees may become disproportionately high relative to the transaction value, increasing costs for users and making the platform less attractive compared to exchanges with more stable fee structures. This could lead to lower transaction volume and reduced user retention. On the other hand, if Tezos' price surges unexpectedly, gas fees may become too low, negatively affecting the platform’s profitability and long-term sustainability.
 
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
+Given Bitcoin’s influence over the broader cryptocurrency market, understanding its impact on Tezos is critical. Since Bitcoin often dictates market sentiment and liquidity flows, its price movements could serve as leading indicators for Tezos price trends. However, no widely accepted predictive model currently exists to quantify this relationship, leaving Tezos-based exchanges, liquidity providers, and financial analysts with limited tools for managing risk and optimizing fee structures.
 
-You can't expect to wield supreme power just `cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+\section{Methodology}
 
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+The data for this study was sourced from the CoinGecko API and includes historical daily information on Bitcoin and Tezos. 
+For both assets, we extracted the date, closing price, trading volume, and market capitalization. 
 
-\section{Experimenten}
+From these raw features, we engineered lagged variables going back up to five days to capture short-term temporal dynamics. For the Linear Regression model, a StandardScaler was applied to normalize the feature set. Three models were trained: Linear Regression, Random Forest, and XGBoost. 
+Their performance was evaluated using the R² score and Root Mean Squared Error (RMSE) on both training and test sets.
 
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
-
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
-
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
-
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
-\section{Sectie met figuur}
-
-De {\LaTeX} figure-omgeving bepaalt zelf waar een afbeelding komt en dat is meestal niet op de plek in de tekst waar de figure-omgeving gedefinieerd wordt. Als je wilt forceren dat afbeeldingen toch in de flow van de tekst blijven, dan kan je dat zoals hieronder:
+\section{Results}
 
 \begin{center}
   \captionsetup{type=figure}
-  \includegraphics[width=1.0\linewidth]{grail}
-  \captionof{figure}{He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say `Ni' again to you, if you do not appease us}
+  \includegraphics[width=1.0\linewidth]{summaryvert}
+  \captionof{figure}{Summary of the three models side by side}
 \end{center}
 
-Let er wel op dat dit tot problemen met bladschikking kan leiden.
+\begin{center}
+  \captionsetup{type=figure}
+  \includegraphics[width=1.0\linewidth]{modelcomparisonvertical}
+  \captionof{figure}{Model performance comparison on R² and RMSE}
+\end{center}
 
-\section{Conclusies}
+\section{Conclusions}
 
-Don't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
+While Random Forest and XGBoost achieved high predictive accuracy by focusing on recent Tezos prices, they failed to uncover meaningful relationships with Bitcoin. In contrast, Linear Regression—despite being simpler—identified a statistically significant 3-day lagged influence from Bitcoin market variables. This suggests that interpretability and temporal nuance are crucial when investigating cross-asset dynamics. Predictive performance alone does not imply insight.
 
-\section{Toekomstig onderzoek}
+\section{Future Research}
 
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
-
+Future work should explore richer datasets, such as sentiment analysis, macroeconomic indicators, or on-chain metrics. Testing temporal models like RNNs or transformers may help capture delayed or nonlinear dependencies between cryptocurrencies that our tree-based methods failed to uncover.
 \end{multicols}
 \end{document}

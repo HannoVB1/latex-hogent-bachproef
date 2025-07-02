@@ -1,0 +1,94 @@
+\chapter{\IfLanguageName{dutch}{Data Collectie}{Data Collection}}%
+\label{ch:datacollection}
+
+\subsection{Data Source}
+
+For this thesis, historical cryptocurrency market data is sourced from the CoinGecko API. CoinGecko was selected due to its cost-effectiveness and the provision of up to 10 years of historical data, which aligns with the research requirements. While the service is not free, it offers a more affordable solution compared to alternatives like CoinMarketCap, which would incur significantly higher costs for similar historical data access.
+Beyond affordability, CoinGecko is recognized for its reliability and comprehensive data coverage. The platform aggregates information from over 1,000 exchanges and 200 blockchain networks, ensuring a broad and accurate dataset. CoinGecko's data collection methodology emphasizes transparency and accuracy, regularly updating sources to maintain data integrity. \textcite{CoinGeckoRollendXavier}
+Furthermore, CoinGecko has been operational since 2014, demonstrating a long-standing commitment to providing dependable cryptocurrency data . The platform also implements a "Trust Score" system to evaluate the reliability of exchanges, considering factors like liquidity, trading volume, and cybersecurity measures .
+Given these factors, CoinGecko stands out as a credible and practical data source for conducting comprehensive cryptocurrency market analysis.
+
+\subsection{Data Description}
+
+The dataset comprises daily price, market capitalization, and trading volume data for Bitcoin (\$BTC) and Tezos (\$XTZ), structured in a time series format. Each entry corresponds to a specific calendar date and includes the relevant financial metrics for the respective cryptocurrency.
+
+Due to Bitcoin's earlier launch, its dataset spans a longer time frame, beginning on April 28, 2013. In contrast, data for Tezos is available starting from June 3, 2018. Notably, the Bitcoin dataset contains missing volume data prior to December 26, 2013, likely due to limited exchange coverage or unavailable historical records in CoinGecko’s database during that early period.
+
+The data for both assets share a consistent structure, which facilitates comparative analysis. Key fields include:
+\begin{itemize}
+    \item \textbf{Date:} The calendar day of the observation.
+    \item \textbf{Price:} The daily closing price in USD.
+    \item \textbf{Market Capitalization:} The total market value of the circulating supply.
+    \item \textbf{Volume:} The total trading volume across supported exchanges.
+\end{itemize}
+
+\subsubsection{Dataset Sizes}
+Before any filtering or preprocessing, the raw dataset sizes are as follows:
+\begin{itemize}
+    \item \textbf{Bitcoin:} 4,399 rows and 4 columns.
+    \item \textbf{Tezos:} 2,509 rows and 4 columns.
+\end{itemize}
+
+\subsection{Data Filtering and Preprocessing}
+
+Since Tezos data is only available from June 3, 2018 onward, the Bitcoin dataset was filtered to include only entries from this date forward. This filtering step not only aligns both datasets temporally but also effectively removes the early Bitcoin entries with missing volume data, thereby resolving any related data quality issues.
+Beyond this temporal alignment, both datasets were inspected for missing values, inconsistencies, and duplicates. No further anomalies were identified. As a result, the final dataset is clean, complete, and ready for feature engineering and modeling.
+
+\subsubsection{Date Alignment}
+\begin{lstlisting}[language=Python, caption={Filtering both datasets to common dates}, label={lst:date-alignment}]
+    # Filter dates so only days where there's values in both datasets are used
+    dfBTCfiltered = dfBTC[dfBTC['date'].isin(dfXTZ['date'])] 
+    dfXTZfiltered = dfXTZ[dfXTZ['date'].isin(dfBTCfiltered['date'])]
+
+    print(dfBTCfiltered.size, dfXTZfiltered.size)
+    # Output: 10032 10032
+\end{lstlisting}
+
+\subsubsection{Adding Features}
+To enhance the dataset, daily return features are added for both Bitcoin and Tezos. These are computed as the percentage change in price relative to the previous day, capturing short-term price dynamics.
+\begin{lstlisting}[language=Python, caption={Adding features}, label={lst:add-features}]
+    # Add returns as features
+    df['btc_return'] = df['btc_price'].pct_change()
+    df['xtz_return'] = df['xtz_price'].pct_change()
+
+    # Add target (Tezos price tomorrow)
+    df['xtz_target'] = df['xtz_price'].shift(-1)
+\end{lstlisting}
+
+We also create lag features for both Bitcoin and Tezos. These features capture the price, volume, and market cap from the previous 5 days, allowing the model to consider recent trends in its predictions. The lag features are named according to the number of days they represent (e.g., `prev\_day`, `2d\_ago`, etc.).
+\begin{lstlisting}[language=Python, caption={Adding features}, label={lst:add-lag-features}]
+    lag_map = {
+    1: 'prev_day',
+    2: '2d_ago',
+    3: '3d_ago',
+    4: '4d_ago',
+    5: '5d_ago'
+    }
+
+    lag_features = [
+    'btc_price', 'xtz_price', 'btc_volume', 'xtz_volume',
+    'btc_market_cap', 'xtz_market_cap'
+    ]
+
+    # Create lag features
+    for lag, suffix in lag_map.items():
+        for feature in lag_features:
+            df[f'{feature}_{suffix}'] = df[feature].shift(lag)
+\end{lstlisting}
+
+
+
+\subsubsection{Scaling Data}
+Before feeding the data into the machine learning model, it is essential to scale the features to ensure that they all contribute equally. This is particularly important for models like linear regression and others that are sensitive to the scale of input features.
+
+In this case, we use the \texttt{StandardScaler} from \texttt{sklearn.preprocessing}, which standardizes the features by removing the mean and scaling to unit variance. This transformation ensures that each feature has a mean of 0 and a standard deviation of 1.
+
+The scaling is applied to both the training and testing datasets. Note that the scaler is fit only on the training data and then applied to the testing data to avoid data leakage.
+
+\begin{lstlisting}[language=Python, caption={Scaling}, label={lst:Scaling}]
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+\end{lstlisting}

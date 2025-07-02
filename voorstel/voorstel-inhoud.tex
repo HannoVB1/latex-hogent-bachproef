@@ -1,51 +1,50 @@
 %---------- Inleiding ---------------------------------------------------------
 
-% TODO: Is dit voorstel gebaseerd op een paper van Research Methods die je
-% vorig jaar hebt ingediend? Heb je daarbij eventueel samengewerkt met een
-% andere student?
-% Zo ja, haal dan de tekst hieronder uit commentaar en pas aan.
+\section{Introduction}% \label{sec:Introduction}
 
-%\paragraph{Opmerking}
+The cryptocurrency market has undergone significant shifts recently, with Bitcoin reaching record highs and driving a surge in market cap. However, despite Bitcoin's dominance, altcoins like Tezos have not experienced the same level of growth, raising questions among traders, developers, 
+and analysts about the factors that drive such disparities. This provides a valuable opportunity to explore the relationship between Bitcoin's price movements and the price dynamics of smaller blockchain ecosystems like Tezos. Understanding these relationships is especially important for decentralized exchanges, such as CrunchySwap, which operates on the Tezos blockchain and faces operational challenges tied to Tezos price fluctuations.
 
-% Dit voorstel is gebaseerd op het onderzoeksvoorstel dat werd geschreven in het
-% kader van het vak Research Methods dat ik (vorig/dit) academiejaar heb
-% uitgewerkt (met medesturent VOORNAAM NAAM als mede-auteur).
-% 
+\hl{For decentralized exchanges, predicting the price of Tezos (\$XTZ) is crucial, as the gas fees required for transaction processing are directly tied to the value of \$XTZ. 
+Sudden and unpredictable price shifts can lead to operational inefficiencies, higher costs, and potentially deter users. For example, if the price of Tezos suddenly drops, gas fees may become disproportionately high, leading to increased transaction costs for users.
+ This could make the platform less attractive compared to others with more stable fee structures, resulting in decreased transaction volume and user retention. Conversely, a sudden surge in the price of Tezos might make gas fees too low, impacting the platform's profitability. 
+ Given Bitcoin’s influence over the broader market, identifying how its price movements impact Tezos can offer valuable insights for improving platform strategies, user experience, and fee structures.}
 
-\section{Inleiding}%
-\label{sec:inleiding}
+ This thesis aims to address the lack of reliable tools and methods for predicting Tezos price movements by analyzing broader market trends, particularly Bitcoin’s price fluctuations. As Bitcoin continues to dominate the cryptocurrency space, its movements often set the tone for the entire market. By identifying how Bitcoin's price trends influence Tezos, this research seeks to uncover correlations between the two and provide a more data-driven approach to decision-making for platforms operating within the Tezos ecosystem.
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+ To achieve this, the research will apply machine learning and artificial intelligence to identify and quantify the correlations between Bitcoin's price movements and Tezos' price trends. By analyzing historical price data from both cryptocurrencies, algorithms will be used to uncover patterns, validate correlations, and test predictive models. This approach aims to develop a method for forecasting Tezos price fluctuations based on Bitcoin's market behavior.
+ 
+ The \textbf{central research question} driving this study is:
+ 
+ \begin{quote} \hl{How do Bitcoin price movements correlate with the price trends of Tezos, and how can machine learning be applied to predict these trends for optimizing transactions on decentralized exchanges?} \end{quote}
+ 
+ The \textbf{research objective} is to create a method for forecasting Tezos price movements, enabling platforms like CrunchySwap to adjust gas fees, enhance user experience, and strengthen their competitiveness within the cryptocurrency market. The deliverable for this research will be a comprehensive report detailing the findings, models, and recommendations for decentralized exchanges and other platforms operating on the Tezos blockchain.
+ 
+ This research is particularly relevant due to the recent surge in Bitcoin's price and the overall high market cap of the cryptocurrency space, which continue to drive broader market trends. By examining the relationship between Bitcoin and Tezos, and applying AI and machine learning techniques to predict price movements, this thesis aims to offer both practical and academic insights into cryptocurrency price dynamics.
 
-\begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
-\end{itemize}
-
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
-
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
 
 %---------- Stand van zaken ---------------------------------------------------
 
-\section{Literatuurstudie}%
-\label{sec:literatuurstudie}
+\section{Literaturestudy}%
+\label{sec:literaturestudy}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+\subsection{Bitcoin and Tezos Market Dynamics}
+\textcite{hossain2021there} provide significant evidence of the strong interdependence between cryptocurrencies, with volatility correlations exceeding 0.9 across markets. They argue that this high degree of correlation highlights the co-movement of cryptocurrencies—a finding consistent with earlier studies such as \autocite{guesmi2019portfolio}. This interdependence is crucial for understanding the dynamics of digital currencies, as the behavior of one cryptocurrency (e.g., Bitcoin) can strongly influence others, such as Tezos. Their findings emphasize the need to analyze cryptocurrencies not in isolation but as part of an interconnected system. Notably, there is a distinct lack of research specifically focusing on the relationship between Bitcoin and Tezos, which this study aims to address.
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+Various studies have also examined the influence of external factors on Bitcoin. For example, \autocite{kurka2019cryptocurrencies} explored the dynamics and asymmetries in shock transmission mechanisms between Bitcoin and traditional asset classes, including stocks, commodities, foreign exchange, and financials. The study found that, unconditionally, spillovers to and from Bitcoin remain fairly low. This suggests that Bitcoin is relatively insulated from shocks originating in traditional markets.
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+However, a significant limitation of Kurka's study is the use of Bitcoin as a representative cryptocurrency for the entire market. While Bitcoin is the most dominant cryptocurrency with the largest market cap, it does not account for the diversity within the cryptocurrency market. Different cryptocurrencies may exhibit unique behaviors and varying levels of interaction with traditional assets. Treating Bitcoin as a proxy for the entire market risks oversimplifying conclusions.
+\subsection{Machine Learning in Cryptocurrency Analysis}
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+Machine learning has emerged as a valuable tool in forecasting cryptocurrency prices and developing investment strategies. One notable study \autocite{alessandretti2018anticipating} explored the use of three forecasting models applied to daily prices of 1,681 cryptocurrencies: two based on gradient boosting decision trees and one on long short-term memory (LSTM) recurrent neural networks. The study demonstrated that these models consistently outperformed a baseline simple moving average strategy in terms of profitability, even when accounting for transaction fees of up to 1\%.
+The methods were optimized using metrics such as the geometric mean return and the Sharpe ratio, with results expressed in Bitcoin to discount the overall market growth. Short-term dependencies were better captured by the gradient boosting decision trees, while LSTM models excelled in handling long-term dependencies and price volatility. Furthermore, the study highlighted that prices and returns from the preceding days were significant predictors of future behavior, with models that tailored predictions for each cryptocurrency (e.g., Method 2) yielding superior results.
+Interestingly, the study found that forecasting in terms of Bitcoin prices, rather than USD, resulted in better performance. This implies that focusing on individual currencies rather than attempting to predict market-wide trends may be more effective. Another study by \textcite{akyildirim2021prediction} analyzed the predictability of the twelve most liquid cryptocurrencies at both the daily and minute level frequencies, 
+employing machine learning classification algorithms such as support vector machines, logistic regression, artificial neural networks, and random forests.
+ The study found that the average classification accuracy of all four algorithms remained consistently above the 50\% threshold for all cryptocurrencies and timescales, indicating a certain degree of predictability in cryptocurrency price trends. 
+  Despite its promising results, the study acknowledged limitations, including the exclusion of intraday price fluctuations and the assumption of unlimited Bitcoin supply with no market impact from trades.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+Future research directions proposed by the study include exploring arbitrage opportunities across exchanges, incorporating intraday price data, and examining the role of social media sentiment in influencing cryptocurrency market behavior. The potential of social media traces as predictors of Bitcoin and other cryptocurrencies has been previously established \parencite{poongodi2021global}, but their broader impact on the entire market remains underexplored.
+These findings underscore the potential of machine learning to not only forecast individual cryptocurrency trends but also uncover nuanced relationships between cryptocurrencies, such as Bitcoin and Tezos.
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -54,31 +53,73 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
 %---------- Methodologie ------------------------------------------------------
-\section{Methodologie}%
+\section{Methodology}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\subsection{Data Collection}
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+The first step in the research process will be the collection of relevant historical data. The primary source of data will be the Binance API, which will provide both price and volume data for Bitcoin (\$BTC) and Tezos (\$XTZ). The dataset will include historical price data (Open, High, Low, Close, Volume) for both cryptocurrencies.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\begin{itemize}
+  \item \textbf{Data Source:}The research will utilize the Binance API to obtain data on the price movements of Bitcoin and Tezos. As the largest cryptocurrency exchange globally, Binance offers the highest trading volume and is accessible in most countries. These factors make it a reliable source for data collection.
+  \item \textbf{Timeframe:} The data will cover the last 3-4 years. This period is selected because Tezos experienced significant volatility in its earlier years, which could introduce noise into the analysis. In contrast, the past 3-4 years have seen a relative stabilization in its price, making this range more representative of the current market dynamics and providing a clearer basis for correlation analysis with Bitcoin.
+  \item \textbf{Data:} The research will utilize Daily OHLCV (Open, High, Low, Close, Volume) data for both Bitcoin and Tezos, as this is a standard and widely accepted format in financial market analysis. In addition to the OHLCV data, data on market capitalization will also be collected.
+\end{itemize}
+When it comes to trading pairs on Binance, we will focus on BTC/USDT, XTZ/USDT and BTC/XTZ. The BTC/USDT pair will be used to analyze Bitcoin's price movements, while the XTZ/USDT pair will be used to analyze Tezos' price trends. The BTC/XTZ pair will be used to analyze the correlation between the two cryptocurrencies.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\subsection{Data Preprocessing}
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+After gathering the raw data, the next phase will involve data preprocessing, including cleaning and transformation of the data to ensure it is suitable for machine learning analysis.
+Additional features will be derived from the raw data, such as moving averages (e.g., 7-day, 14-day), percentage changes, and volatility (standard deviation). These features will capture trends and market volatility, which may influence the performance of the models.
+Lastly we will perform normalization and scaling on hte data. Given the potential differences in the magnitude of price and volume values, the data will be normalized or standardized to ensure that all variables are on a comparable scale, particularly for algorithms sensitive to input scaling, such as neural networks.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\subsection{Model development}
+The core objective of this research is to identify and quantify the correlation between Bitcoin and Tezos price movements. Several machine learning models will be developed and trained to explore and predict these correlations.
+\begin{itemize}
+  \item \textbf{Linear Regression:} Linear regression will serve as a simple baseline model. Aswell as highlight any potential Linear relationships between the two cryptocurrencies.
+  \item \textbf{Random Forest:} A Random Forest model will be used to capture more complex, non-linear relationships between the price movements of Bitcoin and Tezos. Random Forest is robust to overfitting and can handle large datasets, making it suitable for this analysis. It also had great performance in the study of \textcite{akyildirim2021prediction}.
+  \item \textbf{LSTM Networks:} Given the sequential nature of financial time series data, Long Short-Term Memory networks will be explored for their ability to capture dependencies between past price movements and future trends. LSTMs are particularly useful for predicting time series data due to their capacity to learn long-term dependencies. They were also proven to have great performance in the study from \textcite{alessandretti2018anticipating}.
+\end{itemize}
+
+\subsection{Model Evaluation}
+The performance of each model will be evaluated using multiple metrics to assess how well they predict Tezos price movements based on Bitcoin’s fluctuations.
+
+\begin{itemize}
+    \item \textbf{Mean Absolute Error (MAE):} MAE will be used to evaluate the average magnitude of errors in predictions, providing a straightforward measure of model performance.
+    \item \textbf{Mean Squared Error (MSE):} MSE will also be employed to assess prediction errors while penalizing larger discrepancies more heavily.
+    \item \textbf{R-squared:} The coefficient of determination will be used to quantify the proportion of variance in Tezos prices that is explained by Bitcoin price fluctuations.
+    \item \textbf{Visualization:} In addition to numerical evaluation, the models’ predictions will be visually compared to actual price trends to provide further insights into model performance.
+\end{itemize}
+
+\subsection{Results and Reporting}
+Following the model development and evaluation, the results will be documented and analyzed in detail. The final report will include the following sections:
+
+\begin{itemize}
+    \item \textbf{Exploratory Data Analysis (EDA):} Initial data visualizations and summary statistics will be presented to illustrate the relationships between Bitcoin and Tezos price data, including correlations and trends.
+    \item \textbf{Model Performance Comparison:} The performance of each machine learning model will be compared based on the evaluation metrics mentioned earlier. A discussion of the strengths and weaknesses of each model will be provided.
+    \item \textbf{Interpretation of Findings:} Insights into the correlation between Bitcoin and Tezos price trends will be drawn, with a focus on understanding how Bitcoin’s market behavior impacts Tezos prices.
+    \item \textbf{Recommendations:} Based on the findings, actionable recommendations will be made for decentralized exchanges such as CrunchySwap to optimize gas fee structures and enhance user experience. This could include suggestions for dynamic fee adjustment based on Bitcoin price fluctuations.
+\end{itemize}
+
+\subsection{Deliverables}
+The deliverables for this research will include:
+
+\begin{itemize}
+    \item A comprehensive report detailing the methodology, results, and recommendations.
+    \item Code for data processing, model training, and evaluation, ensuring reproducibility of the analysis.
+    \item Visualizations that demonstrate the relationships between Bitcoin and Tezos prices, as well as the performance of the machine learning models.
+\end{itemize}
+
 
 %---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat, conclusie}%
+\section{Conclusion}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Expected Results
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+Based on initial assumptions and the theoretical framework of this study, I expect a strong and relatively linear correlation between the price movements of Bitcoin and Tezos. Given Bitcoin’s dominance in the cryptocurrency market, I hypothesize that Bitcoin’s price movements will typically lead Tezos, with Tezos reacting somewhat later. This could mean that when Bitcoin experiences significant price fluctuations, Tezos will follow suit, but with a noticeable time lag.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+This lag may be attributed to the fact that Tezos, as a smaller and less widely recognized cryptocurrency compared to Bitcoin, may be more sensitive to the general market sentiment created by Bitcoin. While the correlation between the two assets is expected to be positive, there may be variation in the strength of this correlation depending on the broader market conditions (such as whether Bitcoin is in a bull or bear market).
 
+In general, I expect that the correlation will reflect Bitcoin’s influence on the market, with Tezos often mirroring Bitcoin's movements, albeit with some delay.

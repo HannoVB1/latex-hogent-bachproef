@@ -5,46 +5,52 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+Cryptocurrencies have gained significant traction in financial markets, with Bitcoin (BTC) leading as the dominant digital asset. Bitcoin’s price movements often set the tone for the broader cryptocurrency market, influencing investor sentiment and liquidity flows. Among the many altcoins, Tezos (XTZ) stands out as a blockchain platform designed for smart contracts and decentralized applications. Unlike Bitcoin, Tezos employs an on-chain governance model that allows for protocol upgrades without hard forks, which could influence its price dynamics differently. However, given Bitcoin’s outsized role in the crypto ecosystem, understanding how its price fluctuations impact Tezos remains an open question.
 
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+Price volatility is a defining characteristic of cryptocurrencies, making accurate price prediction a challenging but valuable endeavor. In the case of Tezos, price predictability has practical implications, especially for decentralized exchanges (DEXs) built on the Tezos blockchain, such as CrunchySwap. Transaction costs on these platforms are tied to the value of Tezos, meaning sudden price swings can create inefficiencies in fee structures. If Tezos’ price drops sharply, transaction costs can become disproportionately high, discouraging user activity. Conversely, a rapid price increase can lead to fees being too low, potentially affecting the platform’s profitability.
+
+This thesis aims to examine the correlation between Bitcoin and Tezos price trends and explore how machine learning techniques can be used to predict these movements. While deep learning and neural networks have been widely applied in financial forecasting, this research will focus on more interpretable and computationally efficient machine learning methods, such as Autoregressive Integrated Moving Average (ARIMA), Support Vector Machines (SVM), and Gradient Boosting models like XGBoost. These models have demonstrated strong predictive capabilities in financial markets while avoiding the opacity and resource-intensiveness of deep learning approaches.
+
+The research question guiding this thesis is: How do Bitcoin price movements correlate with the price trends of Tezos, and how can machine learning be applied to predict these trends for optimizing transactions on decentralized exchanges? To address this question, the study will analyze historical price data, apply statistical and machine learning models, and evaluate their effectiveness in forecasting Tezos price fluctuations based on Bitcoin’s market behavior.
+
+By contributing to the understanding of cryptocurrency price relationships and advancing predictive modeling techniques, this research has the potential to provide valuable insights for Tezos-based decentralized exchanges, liquidity providers, and financial analysts looking to optimize risk management and transaction strategies in a  volatile market.
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+For Tezos-based decentralized exchanges, such as CrunchySwap, accurately predicting the price of Tezos (\$XTZ) is crucial, as the gas fees required for transaction processing are directly tied to the value of Tezos. Sudden and unpredictable price shifts can lead to operational inefficiencies, higher costs, and user dissatisfaction.
+
+If the price of Tezos drops sharply, gas fees may become disproportionately high relative to the transaction value, increasing costs for users and making the platform less attractive compared to exchanges with more stable fee structures. This could lead to lower transaction volume and reduced user retention. On the other hand, if Tezos' price surges unexpectedly, gas fees may become too low, negatively affecting the platform’s profitability and long-term sustainability.
+
+Given Bitcoin’s influence over the broader cryptocurrency market, understanding its impact on Tezos is critical. Since Bitcoin often dictates market sentiment and liquidity flows, its price movements could serve as leading indicators for Tezos price trends. However, no widely accepted predictive model currently exists to quantify this relationship, leaving Tezos-based exchanges, liquidity providers, and financial analysts with limited tools for managing risk and optimizing fee structures.
+
+This lack of reliable forecasting methods creates challenges for decision-makers within the Tezos ecosystem. Without a clear understanding of how Bitcoin influences Tezos, decentralized exchange operators struggle to set competitive gas fees, liquidity providers face uncertainty in pricing strategies, and financial analysts lack data-driven insights to anticipate market trends.
+
+This research aims to fill this gap by identifying correlations between Bitcoin and Tezos price movements, providing Tezos-based platforms with a data-driven approach to transaction fee optimization, risk management, and user experience enhancement.
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+How do Bitcoin price movements correlate with the price trends of Tezos, and how can machine learning be applied to predict these trends for optimizing transactions on decentralized exchanges?
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+This research aims to explore the correlation between Bitcoin and Tezos price movements and apply machine learning techniques to develop predictive models for \$XTZ price trends. By leveraging models such as XGBoost, Linear Regression, and Random Forests, this study seeks to provide Tezos-based platforms with actionable insights for transaction fee optimization, risk management, and market trend anticipation.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
 
-% Het is gebruikelijk aan het einde van de inleiding een overzicht te
-% geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
-% die je kan aanvullen/aanpassen in functie van je eigen tekst.
+Chapter~\ref{ch:inleiding} provides an introduction to the research topic and outlines the problem statement and objectives.
 
-De rest van deze bachelorproef is als volgt opgebouwd:
+Chapter~\ref{ch:stand-van-zaken} presents an overview of the current state of research in the relevant domain, based on a literature review.
 
-In Hoofdstuk~\ref{ch:stand-van-zaken} wordt een overzicht gegeven van de stand van zaken binnen het onderzoeksdomein, op basis van een literatuurstudie.
+Chapter~\ref{ch:methodologie} explains the methodology and discusses the research techniques used to address the research questions.
 
-In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
+Chapter~\ref{ch:datacollection} covers the data collection process aswell as potential shortcomings in the data.
 
-% TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
+Chapter~\ref{ch:dataexploration} provides an exploratory data analysis, including visualizations and descriptive statistics of the dataset.
 
-In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+Chapter~\ref{ch:machinelearningmodels} describes the machine learning models applied and analyzes their performance.
+
+Finally, Chapter~\ref{ch:conclusion} presents the conclusions, answers the research questions, and provides suggestions for future research in this field.

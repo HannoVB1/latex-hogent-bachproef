@@ -1,48 +1,45 @@
-%%=============================================================================
-%% Samenvatting
-%%=============================================================================
-
-% TODO: De "abstract" of samenvatting is een kernachtige (~ 1 blz. voor een
-% thesis) synthese van het document.
-%
-% Een goede abstract biedt een kernachtig antwoord op volgende vragen:
-%
-% 1. Waarover gaat de bachelorproef?
-% 2. Waarom heb je er over geschreven?
-% 3. Hoe heb je het onderzoek uitgevoerd?
-% 4. Wat waren de resultaten? Wat blijkt uit je onderzoek?
-% 5. Wat betekenen je resultaten? Wat is de relevantie voor het werkveld?
-%
-% Daarom bestaat een abstract uit volgende componenten:
-%
-% - inleiding + kaderen thema
-% - probleemstelling
-% - (centrale) onderzoeksvraag
-% - onderzoeksdoelstelling
-% - methodologie
-% - resultaten (beperk tot de belangrijkste, relevant voor de onderzoeksvraag)
-% - conclusies, aanbevelingen, beperkingen
-%
-% LET OP! Een samenvatting is GEEN voorwoord!
-
-%%---------- Nederlandse samenvatting -----------------------------------------
-%
-% TODO: Als je je bachelorproef in het Engels schrijft, moet je eerst een
-% Nederlandse samenvatting invoegen. Haal daarvoor onderstaande code uit
-% commentaar.
-% Wie zijn bachelorproef in het Nederlands schrijft, kan dit negeren, de inhoud
-% wordt niet in het document ingevoegd.
-
 \IfLanguageName{english}{%
 \selectlanguage{dutch}
 \chapter*{Samenvatting}
-\lipsum[1-4]
 \selectlanguage{english}
 }{}
 
-%%---------- Samenvatting -----------------------------------------------------
-% De samenvatting in de hoofdtaal van het document
+Cryptocurrency markten worden gekenmerkt door extreme volatiliteit, wat uitdagingen vormt voor platformen die afhankelijk zijn van de voorspelbaarheid van de cryptocurrencies. In het geval van op Tezos (XTZ) gebaseerde decentralized exchanges (DEX’s) zoals CrunchySwap, zijn de transactiekosten (gas fees) rechtstreeks gekoppeld aan de marktwaarde van de Tezos-token. Hierdoor kunnen scherpe prijsschommelingen leiden tot verstoorde koststructuren, een prijs te hoog bij prijsdalingen of een prijs te laag bij prijsstijgingen kan de gebruikservaring schaden of de winstgevendheid van het platform onder druk zetten, en operationele onzekerheid vergroot. Gezien de dominante rol van Bitcoin (BTC) in de Cryptocurrency markt en zijn historisch bewezen invloed op marktsentiment en liquiditeit, onderzoekt deze studie of de prijsevolutie van Bitcoin kan worden gebruikt om kortetermijnbewegingen in de Tezos-prijs te voorspellen.
+
+Om deze vraag te beantwoorden, werden drie machine learning-modellen toegepast: Lineaire Regressie, Random Forest en XGBoost en dat op historische data van BTC en XTZ. Het doel was zowel de voorspellende nauwkeurigheid als de interpretatiekracht van elk model te evalueren, en te bepalen of Bitcoin-gerelateerde variabelen betrouwbare indicatoren kunnen zijn voor het voorspellen van Tezos-prijsbewegingen. De dataset bestond uit prijsgebaseerde indicatoren van de BTC/USDT- en XTZ/USDT-trading pairs, met kenmerken zoals rendementen en lag-features tot vijf dagen.
+
+Elk model toonde eigen sterktes en zwaktes. XGBoost presteerde het sterkst op de trainingsdata ($R^2 = 0{,}9948$, RMSE = 0{,}1117), maar ondervond een groot prestatieverlies op de testdata ($R^2 = 0{,}8415$, RMSE = 0{,}1127), wat wijst op overfitting en slechte generalisatie. Random Forest toonde een betere balans, met de laagste test-RMSE (0{,}0810) en een $R^2$ van 0{,}9182. Toch richtten beide tree-based modellen zich vrijwel uitsluitend op lag-features van de Tezos-prijs, en gaven ze nauwelijks gewicht aan Bitcoin-gerelateerde variabelen. Dit suggereert dat deze modellen vooral autoregressieve patronen leerden, zonder zinvolle cross-asset-relaties te detecteren. Ze gaven dus geen belang aan de Bitcoin-gerelateerde features.
+
+Lineaire Regressie, eerst bedoeld als eenvoudige benchmark, bleek uiteindelijk het meest analytisch waardevolle model. Hoewel het iets minder nauwkeurig was op de testset ($R^2 = 0{,}9085$, RMSE = 0{,}0857) in vergelijking met de tree-based modellen, wist het model wel belangrijke verbanden tussen Bitcoin en Tezos te onthullen. Variabelen zoals \texttt{btc\_price\_3d\_ago} en \texttt{btc\_market\_cap\_5d\_ago} bleken belangrijke factoren, wat wijst op een delayed lineaire invloed van Bitcoin op Tezos. Deze vertraagde invloed van Bitcoin—die de complexere modellen niet konden detecteren—wijst erop dat prijsbewegingen van Bitcoin met enige vertraging kunnen doorwerken in de prijs van Tezos. Dit geeft inzicht in hoe marktontwikkelingen in grotere cryptocurrencies hun effect kunnen hebben op kleinere cryptocurrencies. Daarnaast bevestigde het lineaire model ook de aanwezigheid van interne patronen binnen de Tezos-prijs zelf (autocorrelatie), maar deed dit zonder de rol van externe factoren zoals Bitcoin over het hoofd te zien.
+
+Samenvattend tonen de resultaten aan dat complexere modellen zoals XGBoost en Random Forest weliswaar sterke voorspellingen leveren op korte termijn, maar geen inzicht bieden in XTZ-BTC verbanden. Lineaire Regressie, hoewel eenvoudiger en minder krachtig qua nauwkeurigheid, was veel effectiever in het blootleggen van patronen en het valideren van de centrale onderzoeksvraag: dat Bitcoin mogelijk een vertraagde invloed uitoefent op Tezos. Deze inzichten zijn van direct belang voor DEX-ontwikkelaars en liquiditeitsverschaffers die transactiekosten willen optimaliseren en risico’s willen beheren in een volatiele markt.
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
 
-\lipsum[1-4]
+
+Cryptocurrency markets are characterized by extreme volatility, posing significant challenges for platforms that rely on predictable asset values. 
+In the case of Tezos (XTZ)-based decentralized exchanges (DEXs) such as CrunchySwap, gas fees for processing transactions are directly tied to the Tezos token’s market value. 
+This tight coupling means that sharp fluctuations in the XTZ price can result in distorted transaction fees—becoming disproportionately expensive when prices fall and unsustainably cheap when prices spike. 
+These misalignments degrade user experience, harm platform profitability, and increase operational uncertainty. 
+Given Bitcoin’s (BTC) dominant position in the crypto ecosystem, and its historical tendency to shape broader market sentiment and liquidity flows, this study investigates whether Bitcoin’s price behavior can be used to predict Tezos price movements in the short term.
+
+To address this question, the research applied three machine learning models—Linear Regression, Random Forest, and XGBoost—to historical BTC and XTZ data. 
+The goal was to evaluate both the predictive accuracy and interpretability of each model in forecasting Tezos price movements, and to assess whether Bitcoin market variables could serve as reliable predictors. 
+Features were engineered from the raw OHLCV data, including returns and lagged values of up to five days, for both cryptocurrencies. 
+The BTC/USDT and XTZ/USDT trading pairs formed the basis of the dataset, focusing solely on price-based indicators.
+
+Each model revealed distinct strengths and limitations. XGBoost delivered the strongest performance on the training set, achieving an $R^2$ of 0.9948 and a Root Mean Squared Error (RMSE) of 0.1117. 
+However, its performance deteriorated significantly on the test set ($R^2$ of 0.8415, RMSE of 0.1127), indicating substantial overfitting and limited ability to generalize to unseen data. 
+Random Forest offered a better balance, with a test $R^2$ of 0.9182 and the lowest test RMSE of 0.0810, suggesting more robust generalization. 
+Still, both tree-based models consistently prioritized lagged Tezos price features and assigned negligible importance to Bitcoin-related variables, such as BTC price or market capitalization. 
+This suggests that these models learned primarily autoregressive patterns, failing to capture any meaningful cross-asset relationships between BTC and XTZ.
+
+In contrast, Linear Regression—originally intended to serve as a simple baseline—proved to be the most analytically valuable model. 
+While its test set performance was slightly less accurate than that of Random Forest ($R^2$ of 0.9085, RMSE of 0.0857), the model succeeded in surfacing key cross-asset dependencies. 
+Specifically, features like \texttt{btc\_price\_3d\_ago} and \texttt{btc\_market\_cap\_5d\_ago} had statistically significant coefficients, pointing to a delayed linear influence of Bitcoin on Tezos price movements. 
+This lead-lag relationship—undetected by the nonlinear models—offers a critical insight into how Bitcoin market dynamics may ripple through to altcoins like Tezos with a temporal delay. 
+The model also confirmed autocorrelation within Tezos prices, but crucially did so without ignoring the potential explanatory power of external variables.
+
+Overall, the findings suggest that while more complex models like XGBoost and Random Forest can achieve high short-term predictive accuracy by leveraging autoregressive signals, they offer little insight into inter-market relationships. 
+Linear Regression, though less powerful in raw predictive terms, proved far more effective in identifying interpretable patterns and validating the research hypothesis—that Bitcoin may exert a delayed influence on Tezos. 
+These insights are directly relevant for DEXs and liquidity providers seeking to optimize transaction fees and manage risk in a volatile environment. 

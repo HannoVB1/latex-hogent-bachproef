@@ -5,26 +5,76 @@
 \chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}%
 \label{ch:methodologie}
 
-%% TODO: In dit hoofstuk geef je een korte toelichting over hoe je te werk bent
-%% gegaan. Verdeel je onderzoek in grote fasen, en licht in elke fase toe wat
-%% de doelstelling was, welke deliverables daar uit gekomen zijn, en welke
-%% onderzoeksmethoden je daarbij toegepast hebt. Verantwoord waarom je
-%% op deze manier te werk gegaan bent.
-%% 
-%% Voorbeelden van zulke fasen zijn: literatuurstudie, opstellen van een
-%% requirements-analyse, opstellen long-list (bij vergelijkende studie),
-%% selectie van geschikte tools (bij vergelijkende studie, "short-list"),
-%% opzetten testopstelling/PoC, uitvoeren testen en verzamelen
-%% van resultaten, analyse van resultaten, ...
-%%
-%% !!!!! LET OP !!!!!
-%%
-%% Het is uitdrukkelijk NIET de bedoeling dat je het grootste deel van de corpus
-%% van je bachelorproef in dit hoofstuk verwerkt! Dit hoofdstuk is eerder een
-%% kort overzicht van je plan van aanpak.
-%%
-%% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
-%% en geef het een gepaste titel.
+\subsection{Data Collection}
 
-\lipsum[21-25]
+The first step in the research process will be the collection of relevant historical data. The primary source of data will be the CoinGecko API, which will provide both price and volume data for Bitcoin (\$BTC) and Tezos (\$XTZ). The dataset will include historical price data (Open, High, Low, Close, Volume) for both cryptocurrencies of the past 10 years.
 
+\begin{itemize}
+\item \textbf{Data Source:} The research will utilize the CoinGecko API to obtain data on the price movements of Bitcoin and Tezos. As one of the most comprehensive cryptocurrency market data providers, CoinGecko offers extensive historical data of up to 10 years and is widely used in academic and financial research. These factors make it a reliable source for data collection.
+  \item \textbf{Timeframe:} The data will cover the last 10 years. This period is the maximum history available from CoinGecko and is sufficient to analyze the long-term trends and correlations between Bitcoin and Tezos. The 10-year timeframe will allow for a comprehensive analysis of the price movements of both cryptocurrencies, including their historical performance, volatility, and correlation patterns.
+  \item \textbf{Data:} The research will utilize Daily OHLCV (Open, High, Low, Close, Volume) data for both Bitcoin and Tezos, as this is a standard and widely accepted format in financial market analysis. In addition to the OHLCV data, data on market capitalization will also be collected.
+\end{itemize}
+
+When it comes to trading pairs, we will focus on BTC/USDT, XTZ/USDT, and BTC/XTZ. The BTC/USDT pair will be used to analyze Bitcoin's price movements, while the XTZ/USDT pair will be used to analyze Tezos' price trends. The BTC/XTZ pair will be used to analyze the correlation between the two cryptocurrencies.
+
+\subsection{Data Preprocessing}
+
+After gathering the raw data, the next phase will involve data preprocessing, including cleaning, transformation, and feature engineering to ensure the dataset is suitable for machine learning analysis.
+
+\subsubsection{Handling Missing Values}
+
+Financial data can contain missing values due to \textit{API downtime, exchange maintenance, or discrepancies in historical records}. Missing values can distort model performance, especially in time-series forecasting, where each data point depends on previous ones. To address this:
+
+\begin{itemize}
+    \item \textbf{Forward Fill:} If the missing period is short (e.g., 1-2 days), the last available value will be propagated forward to maintain continuity.
+    \item \textbf{Linear Interpolation:} If the gap is larger, missing values will be estimated using linear interpolation based on surrounding data points.
+    \item \textbf{Dropping Missing Rows:} If the missing data is excessive and interpolation is unreliable, affected rows will be removed.
+    \item A \textbf{missing-data report} will be generated to assess the extent of missing values and the chosen imputation method's impact on the dataset.
+\end{itemize}
+
+\subsubsection{Feature Engineering}
+
+To enhance the dataset's predictive capability, additional features were derived from the raw OHLCV data. Specifically, return-based features were computed as daily percentage changes in price, along with lagged versions of key variables such as price, volume, and market capitalization, extending up to a 5-day lag. These features were designed to capture short-term momentum and potential autoregressive patterns in both the Tezos and Bitcoin markets.
+
+Lastly, normalization and scaling will be applied to ensure all variables are on a comparable scale, only for algorithms sensitive to input magnitudes.
+
+\subsection{Model Development}
+
+The core objective of this research is to identify and quantify the potential correlation between Bitcoin and Tezos price movements. Several machine learning models will be developed and trained to explore and predict these correlations.
+
+\begin{itemize}
+  \item \textbf{Linear Regression:} Linear regression will serve as a simple baseline model, as well as highlight any potential linear relationships between the two cryptocurrencies.
+  \item \textbf{Random Forest:} A Random Forest model will be used to capture more complex, non-linear relationships between the price movements of Bitcoin and Tezos. Random Forest is robust to overfitting and can handle large datasets, making it suitable for this analysis. It also had great performance in the study of \textcite{akyildirim2021prediction}.
+  \item \textbf{XGBoost Regression:} XGBoost (Extreme Gradient Boosting), also used by \textcite{lauraalessandretti2018anticipating} and  will be implemented to further enhance the predictive capability of the model. XGBoost is known for its efficiency and high performance in financial time-series forecasting. It employs gradient boosting techniques to iteratively improve prediction accuracy while preventing overfitting. Due to its ability to handle missing values and capture intricate patterns in the data, XGBoost is a strong candidate for analyzing the correlation between Bitcoin and Tezos price movements.
+\end{itemize}
+
+
+
+\subsection{Model Evaluation}
+The performance of each model will be evaluated using multiple metrics to assess how well they predict Tezos price movements based on Bitcoin’s fluctuations.
+
+\begin{itemize}
+    \item \textbf{Mean Absolute Percentage Error (MAPE):} MAPE will be used to evaluate the average percentual magnitude of errors in predictions, providing a straightforward measure of model performance \textcite{dennys2019predicting}.
+    \item \textbf{Root Mean Squared Error (RMSE):} RMSE will be used to measure prediction errors, with larger errors being given more weight, as used in \textcite{mishal2022prediction} providing a clear view of model performance.
+    \item \textbf{R}
+    \item \textbf{Visualization:} In addition to numerical evaluation, the models’ predictions will be visually compared to actual price trends to provide further insights into model performance.
+\end{itemize}
+
+\subsection{Results and Reporting}
+Following the model development and evaluation, the results will be documented and analyzed in detail. The final report will include the following sections:
+
+\begin{itemize}
+    \item \textbf{Exploratory Data Analysis (EDA):} Initial data visualizations and summary statistics will be presented to illustrate the relationships between Bitcoin and Tezos price data, including correlations and trends.
+    \item \textbf{Model Performance Comparison:} The performance of each machine learning model will be compared based on the evaluation metrics mentioned prior.
+    \item \textbf{Interpretation of Findings:} Insights into the correlation between Bitcoin and Tezos price trends will be drawn, with a focus on understanding how Bitcoin’s market behavior impacts Tezos prices.
+    \item \textbf{Recommendations:} Based on the findings, actionable recommendations will be made for decentralized exchanges such as CrunchySwap to optimize gas fee structures and enhance user experience. This could include suggestions for dynamic fee adjustment based on Bitcoin price fluctuations.
+\end{itemize}
+
+\subsection{Deliverables}
+The deliverables for this research will include:
+
+\begin{itemize}
+    \item A comprehensive report detailing the methodology, results, and recommendations.
+    \item Code for data processing, model training, and evaluation, ensuring reproducibility of the analysis.
+    \item Visualizations that demonstrate the relationships between Bitcoin and Tezos prices, as well as the performance of the machine learning models.
+\end{itemize}

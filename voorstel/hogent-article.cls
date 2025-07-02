@@ -38,7 +38,7 @@
 \newif\if@english
 \DeclareOptionX{dutch}{\@dutchtrue\@englishfalse}
 \DeclareOptionX{english}{\@dutchfalse\@englishtrue}
-\ExecuteOptionsX{dutch} %% Default language
+\ExecuteOptionsX{english} %% Default language
 
 % Number of columns: onecolumn/twocolumn
 \newif\if@onecolumn

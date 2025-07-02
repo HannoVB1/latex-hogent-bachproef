@@ -2,17 +2,42 @@
 %% Conclusie
 %%=============================================================================
 
-\chapter{Conclusie}%
-\label{ch:conclusie}
+\chapter{Conclusion}%
+\label{ch:conclusion}
 
-% TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de
-% onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en
-% hoe biedt dit meerwaarde aan het vakgebied/doelgroep? 
-% Reflecteer kritisch over het resultaat. In Engelse teksten wordt deze sectie
-% ``Discussion'' genoemd. Had je deze uitkomst verwacht? Zijn er zaken die nog
-% niet duidelijk zijn?
-% Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
-%onderzoek?
+This study applied three machine learning models—Linear Regression, Random Forest, and XGBoost—to explore whether Bitcoin market variables can help predict short-term Tezos price movements. 
+In both the Random Forest and XGBoost model, the results pointed to the same conclusion: Bitcoin-related features exhibited virtually no predictive power in this context (See Table~\ref{tab:randomforest-feature-importance} and Table~\ref{tab:xgboost-feature-importance}).
+Instead, the most significant predictor across these two models was the previous Tezos price itself, which is consistent with the autoregressive behavior commonly observed in financial time series. 
+Because of this over reliance on the previous Tezos price, the models mostly excelled in short-term predictions, with the Random Forest model achieving an $R^2$ score of 0.9912 on training data and 0.9182 on the test set. 
+But both models struggled to generalize longer periods of time or sudden market shifts. (See Figure~\ref{fig:randomforest-tezos} and Figure~\ref{fig:xgboost-tezos}) On these figures, we can see that when the Tezos price experiences a significant drop or increase, the models fail to predict the price accurately, resulting in large prediction errors.
 
-\lipsum[76-80]
+However, the Linear Regression model gave a different perspective, showing that a 3-day lagged Bitcoin price and market capitalization had a significant influence on Tezos price movements, with an $R^2$ score of 0.9743 on training data and 0.9085 on the test set. 
+While its overall predictive accuracy was slightly lower than that of the Random Forest model, the interpretability of the linear model proved especially valuable. 
+The prominence of the 3-day lagged Bitcoin features, specifically \texttt{btc\_price\_3d\_ago} and \texttt{btc\_market\_cap\_3d\_ago}, suggests that there may be a delayed linear relationship between Bitcoin and Tezos that nonlinear models failed to detect or prioritize or detect (potentially because of noise).
+This kind of temporal lag is meaningful in financial modeling because it implies a potential lead-lag relationship: Bitcoin price movements could be influencing Tezos, but with a delay of several days. In real-world trading or risk management settings, identifying such delayed dependencies is extremely useful, as it allows for the anticipation of future price shifts in Tezos based on known information from the Bitcoin market. 
+Unlike the tree-based models that aggressively favor the most recent data and nonlinear splits, the Linear Regression model captures more subtle, time-distributed effects that might otherwise be treated as noise. 
+As such, even if its predictions are less accurate in absolute terms, its explanatory power offers deeper insight into the potential correlations between the two assets—insight that could guide both further research and decentralized exchanges such as CrunchySwap.
+Because of this, the Linear Regression model serves as the most informative tool for understanding the potential relationship between Bitcoin and Tezos in this study. 
+While it does not deliver the highest predictive performance, its transparent structure and interpretable coefficients allow for a clearer evaluation of individual feature contributions. 
+The model's ability to highlight the predictive role of 3-day lagged Bitcoin variables, which went undetected in the more complex models, demonstrates that simpler, linear approaches can surface important but easily overlooked temporal relationships. 
 
+Several limitations of this study should be acknowledged, particularly regarding the dataset and feature construction. 
+The models were trained on a relatively limited set of features, primarily derived from historical price and volume data of Tezos and Bitcoin. While there was over 30 features engineered, including lagged values and returns, the feature set remained focused on direct price and volume metrics. 
+While sufficient for testing basic autoregressive and cross-asset predictive relationships, this constrained feature space may have hindered the ability of more complex models—such as XGBoost—to demonstrate their full potential and likely explains its poor performance and inability to generalize. 
+A more feature-rich dataset, incorporating additional market indicators, on-chain metrics, or engineered features such as rolling averages or volatility measures, might yield improved performance and potentially uncover more nuanced patterns.
+Furthermore, the models did not account for external factors that often influence cryptocurrency price dynamics. These include market sentiment, news events, macroeconomic indicators (e.g., interest rates, inflation data), social media activity, regulatory announcements, and broader investor behavior. Incorporating such variables, particularly through sentiment analysis or natural language processing applied to Twitter, Reddit, or news headlines, could provide a more holistic view and improve predictive accuracy. 
+The absence of these elements likely contributed to the inability of the non-linear models to capture more complex or indirect relationships between Bitcoin and Tezos prices.
+
+In conclusion, although Random Forest and XGBoost delivered stronger raw predictive performance by heavily relying on recent Tezos prices, they contributed little to understanding the underlying dynamics between Bitcoin and Tezos. 
+In contrast, the Linear Regression model, despite being simpler and slightly less accurate, offered more meaningful insight. Its identification of a delayed relationship between Bitcoin market variables and Tezos prices suggests the presence of a subtle, time-lagged influence that non-linear models may have ignored or dismissed as noise. 
+This finding underscores the value of interpretability and temporal nuance in financial modeling. Ultimately, the study highlights that predictive accuracy alone is not sufficient: model transparency and the ability to detect economically plausible relationships are just as crucial, especially when the goal is to uncover mechanisms rather than simply forecast numbers.
+Future research could expand on this work by incorporating additional data sources such as market sentiment indicators, on-chain analytics, or macroeconomic variables. 
+Testing different model architectures, including recurrent neural networks—such as in studies by \textcite{mishal2022prediction} and \textcite{mallqui2019predicting},  or transformer-based approaches, could also offer deeper insight into temporal dependencies and cross-asset relationships.
+
+\subsection{Discussion}
+
+The poor performance of the Random Forest and XGBoost models was unexpected given their reputation for capturing complex, nonlinear dependencies—particularly in financial time series. 
+These models defaulted to heavily relying on recent Tezos prices, failing to identify any meaningful influence from Bitcoin variables.
+Ironically, the simplest model—Linear Regression—was the one that surfaced the most relevant insight. 
+Initially included as a baseline, it revealed a statistically significant 3-day lagged relationship between Bitcoin and Tezos. This suggests that linear dependencies, when temporally distributed, may be more visible to interpretable models that don’t aggressively prioritize immediate predictors.
+The results imply that predictive complexity does not guarantee explanatory value. When the goal includes uncovering potential inter-asset relationships, especially subtle ones, simpler models may not just suffice—they may outperform in terms of insight. This shift in utility from predictive to explanatory makes the case for not underestimating baseline models in exploratory financial research.
